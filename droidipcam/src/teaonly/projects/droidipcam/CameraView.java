@@ -42,8 +42,10 @@ public class CameraView extends View implements SurfaceHolder.Callback, View.OnT
     	myCamSHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         
         myCamera = Camera.open();
+        /*
         Camera.Parameters p = myCamera.getParameters();
         myCamera.setParameters(p);
+        */
 
         setOnTouchListener(this);
     }
@@ -58,10 +60,10 @@ public class CameraView extends View implements SurfaceHolder.Callback, View.OnT
         myMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 	    
         CamcorderProfile targetProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_LOW);
-        targetProfile.quality = 60;
         targetProfile.videoFrameWidth = wid;
         targetProfile.videoFrameHeight = hei;
-        targetProfile.videoFrameRate = 30;
+        targetProfile.videoFrameRate = 25;
+        targetProfile.videoBitRate = 512*1024;
         targetProfile.videoCodec = MediaRecorder.VideoEncoder.H264;
         targetProfile.audioCodec = MediaRecorder.AudioEncoder.AMR_NB;
         targetProfile.fileFormat = MediaRecorder.OutputFormat.MPEG_4;
@@ -96,18 +98,14 @@ public class CameraView extends View implements SurfaceHolder.Callback, View.OnT
 
     public boolean StartStreaming(FileDescriptor targetFd) {
         myMediaRecorder.setOutputFile(targetFd);
-        myMediaRecorder.setMaxDuration(7200000); 	// Set max duration 2 hours
-        myMediaRecorder.setMaxFileSize(1600000000); // Set max file size 16G
-        
+        myMediaRecorder.setMaxDuration(9600000); 	// Set max duration 4 hours
+        //myMediaRecorder.setMaxFileSize(1600000000); // Set max file size 16G
         myMediaRecorder.setOnInfoListener(streamingEventHandler);
         return realyStart();
     }
 
     public boolean StartRecording(String targetFile) {
-        
         myMediaRecorder.setOutputFile(targetFile);
-        myMediaRecorder.setMaxDuration(7200000); 	// Set max duration 2 hours
-        myMediaRecorder.setMaxFileSize(400000000); // Set max file size 4G
                 
         return realyStart();
     }
