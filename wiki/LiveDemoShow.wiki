@@ -1,8 +1,0 @@
-#Live video demo in web browser.
-
-==Live Demo==
-
-
-Accessing your live video via web browser. 
-
-http://ww2.sinaimg.cn/bmiddle/6e6bcb35jw6ddi111ft7zj.jpg 
