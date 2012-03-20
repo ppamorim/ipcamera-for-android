@@ -804,10 +804,10 @@ public class NanoHTTPD
                             pending -= read;
                         }
                     } else {
-                        byte[] buff = new byte[2048];
+                        byte[] buff = new byte[1024*16];
                         while (true)
                         {
-                            int read = data.read( buff, 0, 2048);
+                            int read = data.read( buff, 0, 1024*16);
                             if (read < 0)	
                                 break;
                             if (read > 0)

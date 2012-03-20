@@ -13,8 +13,10 @@ int MediaStreamer::flushBuffer(unsigned char *buf, unsigned int len) {
     
     if ( ret < 0)
         return -1;
-    if ( ret == 0)
+    if ( ret == 0) {
+        usleep(10);
         continue;
+    }
 
     if ( outfd < 0)
         return -1;
