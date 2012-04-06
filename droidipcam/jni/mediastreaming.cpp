@@ -6,6 +6,7 @@
 #include "mediastreamer.h"
 #include "mediabuffer.h"
 #include "mediapak.h"
+#include "audiotransfer.h"
 
 int MediaStreamer::flushBuffer(unsigned char *buf, unsigned int len) {
   while(len > 0) {
