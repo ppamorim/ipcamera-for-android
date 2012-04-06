@@ -53,15 +53,17 @@ public:
 private:
   bool pushAudioPackage(const unsigned char *d, const unsigned int len, const unsigned int ts);
   bool pushVideoPackage(const unsigned char *d, const unsigned int len, const unsigned int ts, const unsigned int isIntra);
-  void releaseBuffer(MediaPackage *pkg);
 
 private:
   unsigned int vpkg_size_;
   unsigned int apkg_size_;
+
+  unsigned int vpkg_seq_;
   
   std::list<MediaPackage*> vbuffer_;
-  MediaPackage *vpkg_released;
   std::list<MediaPackage*> abuffer_;
+  MediaPackage *vpkg_released;
+  MediaPackage *apkg_released;
 
   std::vector<MediaPackage*> vpkg_pool_;
   std::vector<MediaPackage*> apkg_pool_;
