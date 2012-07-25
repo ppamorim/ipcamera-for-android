@@ -45,7 +45,8 @@ enum
 
 static uint64_t dbl2int( double value )
 {
-	return *(uint64_t*)&value;
+    void *p = &value;
+	return *(uint64_t*)p;
 }
 
 static uint16_t endian_fix16( uint16_t x )
